@@ -20,4 +20,4 @@ pip install -r requirements.txt
 
 ## Team Collaboration
 
-This repository follows feature branch development and pull-request based reviews.
+This repository follows feature branch development and pull-request based reviews
