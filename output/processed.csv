@@ -1,0 +1,7 @@
+booking_id,customer_segment,season,room_nights,cancelled,cancellation_rate
+1,Corporate,Peak,5,0,33.33333333333333
+2,Leisure,OffPeak,2,1,33.33333333333333
+3,Group,Peak,10,0,33.33333333333333
+4,Corporate,OffPeak,3,1,33.33333333333333
+5,Leisure,Peak,4,0,33.33333333333333
+6,Group,Peak,8,0,33.33333333333333
