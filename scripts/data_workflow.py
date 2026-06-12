@@ -53,6 +53,84 @@ def document_ingestion(df, source):
     print("\nFirst 3 Rows:")
     print(df.head(3))
 
+def profile_nulls_and_duplicates(df):
+    """
+    Profile null values and duplicate records.
+    """
+
+    print("\nDATA QUALITY PROFILE")
+
+    for col in df.columns:
+        null_count = df[col].isnull().sum()
+        null_pct = (null_count / len(df)) * 100
+
+        print(
+            f"{col}: "
+            f"Nulls={null_count}, "
+            f"Null %={null_pct:.2f}"
+        )
+
+    duplicate_count = df.duplicated().sum()
+
+    print(
+        f"\nExact Duplicate Rows: "
+        f"{duplicate_count}"
+    )
+
+def profile_numerical(df):
+    """
+    Profile numerical columns.
+    """
+
+    print("\nNUMERICAL PROFILE")
+
+    numeric_columns = df.select_dtypes(
+        include=["number"]
+    ).columns
+
+    for col in numeric_columns:
+        print(f"\nColumn: {col}")
+        print(f"Min: {df[col].min()}")
+        print(f"Max: {df[col].max()}")
+        print(f"Mean: {df[col].mean():.2f}")
+        print(f"Median: {df[col].median()}")
+
+        
+def identify_issues(df, null_threshold=30, dup_threshold=5):
+    """
+    Identify potential data quality issues.
+    """
+
+    print("\nQUALITY ISSUES")
+
+    issues_found = False
+
+    for col in df.columns:
+        null_pct = (
+            df[col].isnull().sum() / len(df)
+        ) * 100
+
+        if null_pct > null_threshold:
+            print(
+                f"High null percentage in "
+                f"{col}: {null_pct:.2f}%"
+            )
+            issues_found = True
+
+    duplicate_pct = (
+        df.duplicated().sum() / len(df)
+    ) * 100
+
+    if duplicate_pct > dup_threshold:
+        print(
+            f"High duplicate percentage: "
+            f"{duplicate_pct:.2f}%"
+        )
+        issues_found = True
+
+    if not issues_found:
+        print("No major quality issues detected.")
+
 def process_data(df):
     """
     Clean and transform data.
@@ -96,14 +174,20 @@ def output_results(df, output_path):
 if __name__ == "__main__":
 
     data = ingest_data(
-    "data/raw/sample.csv",
-    delimiter=","
-)
-    
+        "data/raw/sample.csv",
+        delimiter=","
+    )
+
     document_ingestion(
         data,
         "data/raw/sample.csv"
     )
+
+    profile_nulls_and_duplicates(data)
+
+    profile_numerical(data)
+
+    identify_issues(data)
 
     processed = process_data(data)
 
