@@ -1,18 +1,57 @@
 import pandas as pd
 
-def ingest_data(filepath):
+def ingest_data(filepath, delimiter=","):
     """
-    Load data from a CSV file.
-
-    Input:
-        filepath - path to CSV file
-
-    Returns:
-        Pandas DataFrame
+    Load data from a CSV file with encoding fallback.
     """
-    df = pd.read_csv(filepath)
-    return df
 
+    encodings = [
+        "utf-8",
+        "latin-1",
+        "iso-8859-1",
+        "cp1252"
+    ]
+
+    for encoding in encodings:
+        try:
+            df = pd.read_csv(
+                filepath,
+                delimiter=delimiter,
+                encoding=encoding
+            )
+
+            print(f"Loaded file: {filepath}")
+            print(f"Delimiter: {delimiter}")
+            print(f"Encoding used: {encoding}")
+            print(
+                f"Rows: {df.shape[0]}, "
+                f"Columns: {df.shape[1]}"
+            )
+
+            return df
+
+        except UnicodeDecodeError:
+            continue
+
+    raise ValueError(
+        "Could not load file with any supported encoding."
+    )
+
+def document_ingestion(df, source):
+    """
+    Print ingestion audit information.
+    """
+
+    print("\nINGESTION REPORT")
+    print(f"Source: {source}")
+    print(f"Rows: {df.shape[0]}")
+    print(f"Columns: {df.shape[1]}")
+
+    print("\nColumn Types:")
+    print(df.dtypes)
+
+    print("\nFirst 3 Rows:")
+    print(df.head(3))
 
 def process_data(df):
     """
@@ -56,7 +95,15 @@ def output_results(df, output_path):
 
 if __name__ == "__main__":
 
-    data = ingest_data("data/raw/sample.csv")
+    data = ingest_data(
+    "data/raw/sample.csv",
+    delimiter=","
+)
+    
+    document_ingestion(
+        data,
+        "data/raw/sample.csv"
+    )
 
     processed = process_data(data)
 
