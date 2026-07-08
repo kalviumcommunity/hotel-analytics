@@ -1,0 +1,4 @@
+customer_id,name,email,amount,category,valid_customer_id,valid_name,valid_email,valid_email_format,valid_amount,valid_category,passes_all_checks
+2,Bob,,250,B,True,True,False,False,True,True,False
+4,,charlie@example.com,500,C,True,False,True,True,True,True,False
+5,Diana,,200,B,True,True,False,False,True,True,False

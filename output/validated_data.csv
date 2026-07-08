@@ -1,0 +1,3 @@
+customer_id,name,email,amount,category,valid_customer_id,valid_name,valid_email,valid_email_format,valid_amount,valid_category,passes_all_checks
+1,Alice,alice@example.com,100,A,True,True,True,True,True,True,True
+3,Alice,alice@example.com,100,A,True,True,True,True,True,True,True
