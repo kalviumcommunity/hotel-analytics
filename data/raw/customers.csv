@@ -1,0 +1,11 @@
+customer_id,name,email,city
+1,Alice,alice@example.com,Bangalore
+2,Bob,bob@example.com,Kochi
+3,Charlie,charlie@example.com,Chennai
+4,David,david@example.com,Hyderabad
+5,Eva,eva@example.com,Mumbai
+6,Frank,frank@example.com,Pune
+7,Grace,grace@example.com,Delhi
+8,Harry,harry@example.com,Goa
+9,Ivy,ivy@example.com,Kolkata
+10,Jack,jack@example.com,Jaipur
