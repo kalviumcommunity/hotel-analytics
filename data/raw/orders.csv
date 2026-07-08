@@ -1,0 +1,11 @@
+order_id,customer_id,product,quantity,amount
+101,1,Laptop,1,75000
+102,1,Mouse,2,1500
+103,2,Keyboard,1,2500
+104,3,Monitor,1,18000
+105,3,USB Cable,3,900
+106,5,Headphones,1,3500
+107,7,Phone,1,25000
+108,7,Charger,2,2000
+109,11,Tablet,1,30000
+110,12,Camera,1,45000

@@ -1,0 +1,14 @@
+customer_id,name,email,city,order_id,product,quantity,amount
+1,Alice,alice@example.com,Bangalore,101.0,Laptop,1.0,75000.0
+1,Alice,alice@example.com,Bangalore,102.0,Mouse,2.0,1500.0
+2,Bob,bob@example.com,Kochi,103.0,Keyboard,1.0,2500.0
+3,Charlie,charlie@example.com,Chennai,104.0,Monitor,1.0,18000.0
+3,Charlie,charlie@example.com,Chennai,105.0,USB Cable,3.0,900.0
+4,David,david@example.com,Hyderabad,,,,
+5,Eva,eva@example.com,Mumbai,106.0,Headphones,1.0,3500.0
+6,Frank,frank@example.com,Pune,,,,
+7,Grace,grace@example.com,Delhi,107.0,Phone,1.0,25000.0
+7,Grace,grace@example.com,Delhi,108.0,Charger,2.0,2000.0
+8,Harry,harry@example.com,Goa,,,,
+9,Ivy,ivy@example.com,Kolkata,,,,
+10,Jack,jack@example.com,Jaipur,,,,
