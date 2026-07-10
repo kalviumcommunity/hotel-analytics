@@ -1,5 +1,8 @@
-import pandas as pd
 import os
+import time
+
+import numpy as np
+import pandas as pd
 
 # Load data
 df = pd.read_csv("data/raw/customer_transactions.csv")
@@ -89,29 +92,77 @@ df["rfm_score"] = (
 )
 
 # ---------------------------------------
-# Task 5: Validation
+# Task 5: NumPy-based normalization
 # ---------------------------------------
 
+df["revenue"] = df["total_spent"].astype(float)
+revenue_array = df["revenue"].to_numpy(dtype=float)
+
+# Min-max normalization
+revenue_min = revenue_array.min()
+revenue_max = revenue_array.max()
+revenue_range = revenue_max - revenue_min
+if revenue_range == 0:
+    normalized_np = np.zeros_like(revenue_array, dtype=float)
+else:
+    normalized_np = (revenue_array - revenue_min) / revenue_range
+
+df["revenue_normalized"] = normalized_np
+
+# Z-score normalization
+revenue_mean = revenue_array.mean()
+revenue_std = revenue_array.std(ddof=0)
+if revenue_std == 0:
+    z_scores = np.zeros_like(revenue_array, dtype=float)
+else:
+    z_scores = (revenue_array - revenue_mean) / revenue_std
+
+df["revenue_zscore"] = z_scores
+
+# Bulk ranking / scoring
+rankings = np.argsort(-revenue_array)
+ranked_values = np.empty_like(rankings, dtype=int)
+ranked_values[rankings] = np.arange(1, len(rankings) + 1)
+df["revenue_rank"] = ranked_values
+
+# Performance comparison
+start = time.perf_counter()
+result_loop = []
+for val in revenue_array:
+    result_loop.append(val * 1.1)
+loop_time = time.perf_counter() - start
+
+start = time.perf_counter()
+result_np = revenue_array * 1.1
+np_time = time.perf_counter() - start
+
+print("\nNormalization Performance")
+print(f"Loop: {loop_time:.6f}s")
+print(f"NumPy: {np_time:.6f}s")
+print(f"Speedup: {loop_time / np_time:.1f}x" if np_time > 0 else "Speedup: infx")
+
 print("\nValidation")
-
 print(df["engagement_tier"].value_counts())
-
 print(
     f"RFM Score Range: "
     f"{df['rfm_score'].min()} - {df['rfm_score'].max()}"
 )
-
 print("\nMissing Values")
-
 print(
     df[
         [
             "engagement_tier",
             "spend_quartile",
             "rfm_score",
+            "revenue_normalized",
+            "revenue_zscore",
+            "revenue_rank",
         ]
     ].isna().sum()
 )
+print("\nNormalization Output")
+print(f"Shape: {df.shape}")
+print(f"Dtypes:\n{df.dtypes}")
 
 # ---------------------------------------
 # Save output
