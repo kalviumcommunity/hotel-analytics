@@ -1,0 +1,23 @@
+Revenue Distribution Analysis:
+Skewness: 0.82
+Kurtosis (Fisher): -0.38 (normal=0). Pearson: 2.62 (normal=3)
+Mean: $8640
+Median: $7000
+Max: $25000
+Top 1% threshold: $24370
+
+Interpretation: Distribution reasonably symmetric.
+Business action: Uniform customer strategy may be acceptable.
+
+Percentiles:
+  25%: $2000
+  50%: $7000
+  75%: $11750
+  90%: $18700
+  95%: $21850
+  99%: $24370
+
+Segment comparison:
+  High-value count: 3; mean=$18333; median=$18000
+  Low-value count: 3; mean=$967; median=$800
+  Gap between 75% and 90%: $6950
