@@ -1,0 +1,88 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 210 40% 98%;      /* #F8FAFC */
+    --foreground: 222 47% 11%;      /* slate-900 */
+
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+
+    --primary: 243 75% 59%;         /* indigo #4F46E5 */
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 160 84% 39%;       /* emerald #10B981 */
+    --secondary-foreground: 0 0% 100%;
+
+    --accent: 38 92% 50%;           /* amber #F59E0B */
+    --accent-foreground: 26 40% 20%;
+
+    --muted: 210 40% 96%;
+    --muted-foreground: 215 16% 47%;
+
+    --destructive: 350 89% 60%;     /* rose #F43F5E */
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 243 75% 59%;
+
+    --radius: 0.75rem;
+  }
+
+  .dark {
+    --background: 222 47% 11%;      /* slate-900 */
+    --foreground: 210 40% 98%;
+
+    --card: 217 33% 17%;            /* slate-800 */
+    --card-foreground: 210 40% 98%;
+
+    --popover: 217 33% 17%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 243 75% 65%;
+    --primary-foreground: 222 47% 11%;
+
+    --secondary: 160 70% 45%;
+    --secondary-foreground: 222 47% 11%;
+
+    --accent: 38 92% 55%;
+    --accent-foreground: 26 40% 12%;
+
+    --muted: 217 33% 22%;
+    --muted-foreground: 215 20% 65%;
+
+    --destructive: 350 80% 65%;
+    --destructive-foreground: 222 47% 11%;
+
+    --border: 217 33% 24%;
+    --input: 217 33% 24%;
+    --ring: 243 75% 65%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+  h1, h2, h3, h4 {
+    @apply font-display;
+  }
+}
+
+/* thin scrollbars for tables and sidebar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-muted-foreground/30 rounded-full;
+}
